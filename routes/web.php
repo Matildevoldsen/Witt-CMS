@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Forum\DiscussionShowController;
 use App\Http\Controllers\Forum\ForumIndexController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
@@ -26,6 +27,7 @@ Route::get('/', function () {
 });
 
 Route::get('/forum', ForumIndexController::class)->name('forum');
+Route::get('/forum/{discussion:slug}', DiscussionShowController::class)->name('discussions.show');
 
 Route::middleware([
     'auth:sanctum',

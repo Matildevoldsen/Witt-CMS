@@ -5,7 +5,7 @@ namespace App\Http\Resources;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class DiscussionResource extends JsonResource
+class DateTimeResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -15,11 +15,8 @@ class DiscussionResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
-            'id' => $this->id,
-            'topic' => TopicResource::make($this->whenLoaded('topic')),
-            'title' => $this->title,
-            'slug' => $this->slug,
-            'is_pinned' => $this->isPinned()
+            'human' => $this->diffForHumans(),
+            'dateTime' => $this->toDateTimeString()
         ];
     }
 }

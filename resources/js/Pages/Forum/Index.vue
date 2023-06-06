@@ -3,6 +3,7 @@ import ForumLayout from "@/Layouts/ForumLayout.vue";
 import Select from "../../Components/Select.vue";
 import InputLabel from "../../Components/InputLabel.vue";
 import Discussion from "../../Components/Forum/Discussion.vue";
+import Pagination from "../../Components/Pagination.vue";
 
 defineProps({
     discussions: Object,
@@ -12,7 +13,7 @@ defineProps({
 <template>
     <ForumLayout title="Forum">
         <template #side>
-            {{ }}
+
         </template>
 
         <div class="space-y-6">
@@ -32,6 +33,7 @@ defineProps({
 
             <div class="space-y-3">
                 <Discussion v-for="discussion in discussions.data" :key="discussion.id" :discussion="discussion"/>
+                <Pagination class="!mt-6" :pagination="discussions.meta"/>
             </div>
         </div>
     </ForumLayout>
