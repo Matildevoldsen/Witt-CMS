@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('site_settings', function (Blueprint $table) {
             $table->id();
             $table->string('logo_path')->nullable();
-            $table->string('name')->default('ElectronicRebirth');
+            $table->string('name')->default( );
             $table->string('email')->nullable();
             $table->string('phone')->nullable();
             $table->string('address')->nullable();
