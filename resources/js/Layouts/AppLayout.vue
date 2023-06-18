@@ -49,10 +49,6 @@ const logout = () => {
 
                             <!-- Navigation Links -->
                             <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                                <NavLink :href="route('dashboard')" :active="route().current('dashboard')">
-                                    Dashboard
-                                </NavLink>
-
                                 <NavLink :href="route('forum')" :active="route().current('forum')">
                                     Forum
                                 </NavLink>
@@ -136,6 +132,12 @@ const logout = () => {
 
                             <!-- Settings Dropdown -->
                             <template v-if="$page.props.auth.user">
+                                <div class="hidden space-x-8 sm:my-px sm:ml-10 sm:flex h-16">
+                                    <NavLink class="border-b-0" :href="route('dashboard')" :active="route().current('dashboard')">
+                                        Dashboard
+                                    </NavLink>
+                                </div>
+
                                 <div class="ml-3 relative">
                                     <Dropdown align="right" width="48">
                                         <template #trigger>
