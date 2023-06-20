@@ -8,6 +8,7 @@ import DropdownLink from '@/Components/DropdownLink.vue';
 import NavLink from '@/Components/NavLink.vue';
 import ResponsiveNavLink from '@/Components/ResponsiveNavLink.vue';
 import PrimaryButton from "../Components/PrimaryButton.vue";
+import Footer from "../Components/Footer.vue";
 
 defineProps({
     title: String,
@@ -133,7 +134,8 @@ const logout = () => {
                             <!-- Settings Dropdown -->
                             <template v-if="$page.props.auth.user">
                                 <div class="hidden space-x-8 sm:my-px sm:ml-10 sm:flex h-16">
-                                    <NavLink class="border-b-0" :href="route('dashboard')" :active="route().current('dashboard')">
+                                    <NavLink class="border-b-0" :href="route('dashboard')"
+                                             :active="route().current('dashboard')">
                                         Dashboard
                                     </NavLink>
                                 </div>
@@ -345,6 +347,8 @@ const logout = () => {
             <main>
                 <slot/>
             </main>
+
+            <Footer/>
         </div>
     </div>
 </template>
