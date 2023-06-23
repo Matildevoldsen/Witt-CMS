@@ -7,8 +7,11 @@ import useCreateDiscussion from "../../../Composeables/useCreatePost.js";
 import InputError from "../../InputError.vue";
 import Svg from "../../Svg.vue";
 import useCreatePost from "../../../Composeables/useCreatePost.js";
+import {Mentionable} from "vue-mention";
+import useMentionSearch from "../../../Composeables/useMentionSearch.js";
 
 const {postVisible, hideCreatePostForm, discussionContext, form} = useCreatePost()
+const { mentionSearchResults, mentionSearch } = useMentionSearch()
 
 const createPost = () => {
     form.post(route('posts.store', discussionContext.value), {
@@ -34,12 +37,14 @@ const createPost = () => {
         <template v-slot:main="{ markdownPreviewEnabled }">
             <div>
                 <InputLabel for="content" value="Content" class="sr-only"/>
-                <Textarea
-                    v-if="!markdownPreviewEnabled"
-                    v-model="form.body"
-                    rows="6"
-                    class="w-full h-48 align-top"
-                    id="content"/>
+                <Mentionable :keys="['@']" offset="6" v-on:search="mentionSearch" :items="mentionSearchResults">
+                    <Textarea
+                        v-if="!markdownPreviewEnabled"
+                        v-model="form.body"
+                        rows="6"
+                        class="w-full h-48 align-top"
+                        id="content"/>
+                </Mentionable>
                 <InputError :message="form.errors.body" class="mt-2"/>
             </div>
         </template>

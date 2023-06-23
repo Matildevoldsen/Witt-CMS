@@ -49,6 +49,12 @@ defineProps({
                             Participating
                         </Link>
                     </li>
+                    <li>
+                        <Link :class="{ 'font-bold': query?.filter?.mentioned }"
+                              :href="route('forum') + '?filter[mentioned]=1'">
+                            Mentioned
+                        </Link>
+                    </li>
                 </ul>
             </nav>
         </div>
