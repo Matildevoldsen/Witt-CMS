@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Blog\CreateBlogController;
 use App\Http\Controllers\Forum\DiscussionPatchController;
 use App\Http\Controllers\Forum\DiscussionShowController;
 use App\Http\Controllers\Forum\DiscussionStoreController;
@@ -51,4 +52,6 @@ Route::middleware([
 
     Route::patch('/forum/posts/{post}', PostPatchController::class)->name('posts.patch');
     Route::delete('/forum/posts/{post}', PostDestroyController::class)->name('posts.destroy');
+
+    Route::get('/blog/create', CreateBlogController::class)->name('blog.create');
 });
