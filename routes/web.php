@@ -1,6 +1,10 @@
 <?php
 
-use App\Http\Controllers\Blog\CreateBlogController;
+use App\Http\Controllers\Blog\ArticleIndexController;
+use App\Http\Controllers\Blog\ArticlePatchController;
+use App\Http\Controllers\Blog\CreateArticleController;
+use App\Http\Controllers\Blog\EditArticleController;
+use App\Http\Controllers\Blog\PublishArticleController;
 use App\Http\Controllers\Forum\DiscussionPatchController;
 use App\Http\Controllers\Forum\DiscussionShowController;
 use App\Http\Controllers\Forum\DiscussionStoreController;
@@ -32,6 +36,9 @@ Route::get('/', function () {
         'phpVersion' => PHP_VERSION,
     ]);
 });
+
+Route::get('/blog/article/{article:slug}', ArticleIndexController::class)->name('article.show');
+
 Route::post('/forum/markdown-preview', MarkdownPreviewController::class)->name('markdown.preview');
 
 Route::get('/forum', ForumIndexController::class)->name('forum');
@@ -53,5 +60,8 @@ Route::middleware([
     Route::patch('/forum/posts/{post}', PostPatchController::class)->name('posts.patch');
     Route::delete('/forum/posts/{post}', PostDestroyController::class)->name('posts.destroy');
 
-    Route::get('/blog/create', CreateBlogController::class)->name('blog.create');
+    Route::get('/blog/article/{article:slug}/edit', EditArticleController::class)->name('article.edit');
+    Route::post('/blog/article/create', CreateArticleController::class)->name('article.create');
+    Route::patch('/blog/article/{article:slug}/edit', ArticlePatchController::class)->name('article.patch');
+    Route::patch('/blog/article/{article:slug}/publish', PublishArticleController::class)->name('article.publish');
 });
