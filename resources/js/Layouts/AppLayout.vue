@@ -27,6 +27,10 @@ const switchToTeam = (team) => {
 const logout = () => {
     router.post(route('logout'));
 };
+
+const createArticle = () => {
+    router.post(route('article.create'))
+}
 </script>
 
 <template>
@@ -138,6 +142,9 @@ const logout = () => {
                                              :active="route().current('dashboard')">
                                         Dashboard
                                     </NavLink>
+                                    <PrimaryButton v-on:click="createArticle" class="m-3" type="button">
+                                        Create Article
+                                    </PrimaryButton>
                                 </div>
 
                                 <div class="ml-3 relative">

@@ -2,8 +2,10 @@
 
 namespace App\Providers;
 
+use App\Models\Article;
 use App\Models\Post;
 use App\Models\User;
+use App\Observers\ArticleObserver;
 use App\Observers\PostObserver;
 use App\Observers\UserObserver;
 use Illuminate\Auth\Events\Registered;
@@ -17,6 +19,7 @@ class EventServiceProvider extends ServiceProvider
     protected $observers = [
         User::class => [UserObserver::class],
         Post::class => [PostObserver::class],
+        Article::class => [ArticleObserver::class]
     ];
     /**
      * The event to listener mappings for the application.

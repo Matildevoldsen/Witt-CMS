@@ -1,0 +1,70 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+[x-cloak] {
+    display: none;
+}
+
+.markdown {
+    @apply mb-2 dark:text-gray-200;
+}
+
+code {
+    @apply whitespace-pre-wrap leading-loose;
+}
+
+.shiki {
+    @apply text-sm p-6 rounded-lg my-4;
+}
+
+.mention-item {
+    @apply p-3 leading-none cursor-pointer;
+}
+
+.mention-selected {
+    @apply bg-gray-100 cursor-pointer;
+}
+
+.tiptapEditor {
+    @apply w-full border-0;
+}
+
+.tiptapEditor .ProseMirror {
+    height: 100vh;
+    @apply border-0 focus:border-0 focus:outline-none;
+}
+
+.tiptapEditor .ProseMirror {
+    ol {
+        list-style: decimal;
+    }
+    ul {
+        list-style: disc;
+    }
+    > * + * {
+        margin-top: 0.75em;
+    }
+}
+
+#bubble-menu .is-active {
+    @apply bg-gray-100;
+}
+
+blockquote {
+    @apply p-4 my-4 border-l-4 border-gray-300 bg-gray-50 dark:border-gray-500 dark:bg-gray-800;
+}
+
+@layer components {
+    .btn {
+        @apply inline-flex items-center px-4 py-2 bg-gray-800 dark:bg-gray-200 border border-transparent rounded-md font-semibold text-xs text-white dark:text-gray-800 uppercase tracking-widest hover:bg-gray-700 dark:hover:bg-white focus:bg-gray-700 dark:focus:bg-white active:bg-gray-900 dark:active:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 dark:focus:ring-offset-gray-800 transition ease-in-out duration-150;
+    }
+
+    .input {
+        @apply border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm;
+    }
+
+    .textarea {
+        @apply border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm;
+    }
+}
