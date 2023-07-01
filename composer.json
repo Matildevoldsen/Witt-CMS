@@ -1,8 +1,9 @@
 {
     "name": "laravel/laravel",
     "type": "project",
+    "version": "0.1.1",
     "description": "The Laravel Framework.",
-    "keywords": ["framework", "laravel"],
+    "keywords": ["framework", "laravel", "php", "CMS"],
     "license": "MIT",
     "require": {
         "php": "^8.1.2",
