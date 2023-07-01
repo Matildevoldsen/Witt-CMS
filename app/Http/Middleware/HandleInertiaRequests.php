@@ -3,6 +3,7 @@
 namespace App\Http\Middleware;
 
 use App\Http\Resources\TopicResource;
+use App\Models\SiteSettings;
 use App\Models\Topic;
 use Illuminate\Http\Request;
 use Inertia\Middleware;
@@ -34,6 +35,7 @@ class HandleInertiaRequests extends Middleware
     {
         return array_merge(parent::share($request), [
             'appName' => config()->get('app.name'),
+            'settings' => SiteSettings::first(),
             'topics' => TopicResource::collection(Topic::orderBy('name', 'asc')->get()),
             'ziggy' => function () use ($request) {
                 return array_merge((new Ziggy)->toArray(), [
