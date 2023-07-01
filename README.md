@@ -1,6 +1,7 @@
 # Witt-CMS
 
 ![Project Version](https://img.shields.io/badge/version-0.1.1-green.svg)
+![Build](https://img.shields.io/badge/Build-alpha-red)
 
 Witt-CMS is a Laravel application powered by Inertia.js, Vue.js, and Tailwind CSS, with server-side rendering (SSR) for better performance and SEO. This project provides a robust CMS with a built-in forum and authentication via Laravel Jetstream.
 
