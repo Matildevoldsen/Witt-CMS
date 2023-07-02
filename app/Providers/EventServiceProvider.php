@@ -2,6 +2,10 @@
 
 namespace App\Providers;
 
+use App\Events\JobProcessed;
+use App\Events\TestEvent;
+use App\Jobs\ImportCsv;
+use App\Listeners\SendJobProcessedEvent;
 use App\Models\Article;
 use App\Models\Post;
 use App\Models\User;
@@ -29,7 +33,7 @@ class EventServiceProvider extends ServiceProvider
     protected $listen = [
         Registered::class => [
             SendEmailVerificationNotification::class,
-        ]
+        ],
     ];
 
     /**
