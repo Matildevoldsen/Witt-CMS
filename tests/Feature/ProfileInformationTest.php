@@ -16,6 +16,7 @@ class ProfileInformationTest extends TestCase
 
         $response = $this->put('/user/profile-information', [
             'name' => 'Test Name',
+            'username' => 'testusername',
             'email' => 'test@example.com',
         ]);
 
