@@ -9,9 +9,12 @@ import NavLink from '@/Components/NavLink.vue';
 import ResponsiveNavLink from '@/Components/ResponsiveNavLink.vue';
 import PrimaryButton from "../Components/PrimaryButton.vue";
 import Footer from "../Components/Footer.vue";
+import CreateSiteModal from "../Components/CreateSiteModal.vue";
 
-defineProps({
+
+const props = defineProps({
     title: String,
+    settings: Object
 });
 
 const showingNavigationDropdown = ref(false);
@@ -39,6 +42,8 @@ const createArticle = () => {
 
         <Banner/>
 
+        <CreateSiteModal/>
+
         <div class="min-h-screen bg-gray-100 dark:bg-gray-900">
             <nav class="bg-white dark:bg-gray-800 border-b border-gray-100 dark:border-gray-700">
                 <!-- Primary Navigation Menu -->
@@ -47,13 +52,17 @@ const createArticle = () => {
                         <div class="flex">
                             <!-- Logo -->
                             <div class="shrink-0 flex items-center">
-                                <Link :href="route('dashboard')">
+                                <Link :href="route('home')">
                                     <ApplicationMark class="block h-9 w-auto"/>
                                 </Link>
                             </div>
 
                             <!-- Navigation Links -->
                             <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                                <NavLink :href="route('home')" :active="route().current('home')">
+                                    Home
+                                </NavLink>
+
                                 <NavLink :href="route('forum')" :active="route().current('forum')">
                                     Forum
                                 </NavLink>
@@ -179,8 +188,32 @@ const createArticle = () => {
                                             </div>
 
                                             <DropdownLink :href="route('profile.show')">
-                                                Profile
+                                                Your Profile
                                             </DropdownLink>
+
+                                            <DropdownLink :href="route('profile.show')">
+                                                Account Settings
+                                            </DropdownLink>
+
+                                            <div class="border-t border-gray-200 dark:border-gray-600"/>
+
+                                            <div class="block px-4 py-2 text-xs text-gray-400">
+                                                Orders & Payment
+                                            </div>
+
+                                            <DropdownLink :href="route('profile.show')">
+                                                Orders
+                                            </DropdownLink>
+
+                                            <DropdownLink :href="route('profile.show')">
+                                                Payment Methods
+                                            </DropdownLink>
+
+                                            <DropdownLink :href="route('profile.show')">
+                                                Address Book
+                                            </DropdownLink>
+
+                                            <div class="border-t border-gray-200 dark:border-gray-600"/>
 
                                             <DropdownLink v-if="$page.props.jetstream.hasApiFeatures"
                                                           :href="route('api-tokens.index')">
