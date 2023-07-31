@@ -9,7 +9,7 @@ defineProps({
     <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
         <div class="p-6 text-gray-900">
             <nav class="space-y-3">
-                <ul class="space-y-2">
+                <ul class="space-y-2 dark:text-gray-100">
                     <li>
                         <Link :class="{ 'font-bold': !query?.filter && route().current('forum') }"
                               :href="route('forum')">

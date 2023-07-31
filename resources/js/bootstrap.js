@@ -20,23 +20,23 @@ import Echo from 'laravel-echo';
 
 import Pusher from 'pusher-js';
 
-window.Pusher = Pusher;
-
-window.Echo = new Echo({
-    broadcaster: 'pusher',
-    key: import.meta.env.VITE_PUSHER_APP_KEY,
-    cluster: import.meta.env.VITE_PUSHER_APP_CLUSTER,
-    forceTLS: true,
-    wsHost: window.location.hostname,
-    wssPort: 6001,
-    authorizer: (channel, options) => {
-        return {
-            authorize: (socketId, callback) => {
-                callback(false, {}); // Just auth every request
-            }
-        };
-    },
-});
+// window.Pusher = Pusher;
+//
+// window.Echo = new Echo({
+//     broadcaster: 'pusher',
+//     key: import.meta.env.VITE_PUSHER_APP_KEY,
+//     cluster: import.meta.env.VITE_PUSHER_APP_CLUSTER,
+//     forceTLS: true,
+//     wsHost: window.location.hostname,
+//     wssPort: 6001,
+//     authorizer: (channel, options) => {
+//         return {
+//             authorize: (socketId, callback) => {
+//                 callback(false, {}); // Just auth every request
+//             }
+//         };
+//     },
+// });
 window.addEventListener('load', function () {
     // Check if the browser's theme is set to dark mode
     if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {

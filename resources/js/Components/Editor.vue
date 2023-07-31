@@ -15,6 +15,7 @@ const props = defineProps({
         type: String,
         default: '',
     },
+    editorClasses: String
 })
 
 const editor = new Editor({
@@ -58,7 +59,9 @@ defineEmits(['update:modelValue']);
             <Svg name="icon-numbered-list" class="w-10 h-5"/>
         </button>
     </bubble-menu>
+
     <EditorContent class="tiptapEditor"
+                   :class="editorClasses"
                    @input="$emit('update:modelValue', $event.target.innerHTML)"
                    :editor="editor" />
 </template>
