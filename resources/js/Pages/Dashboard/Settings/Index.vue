@@ -32,8 +32,6 @@ const updateSiteSettings = () => {
         form.logo_path = photoInput.value.files[0];
     }
 
-    console.log(form.logo_path);
-
     form.post(route("dashboard.settings.update"), {
         preserveScroll: true,
         onSuccess: () => {

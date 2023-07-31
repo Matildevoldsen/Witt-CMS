@@ -1,16 +1,17 @@
 <template>
-    <img v-if="image" :src="image"/>
+    <component :is="icon"></component>
 </template>
 <script setup>
-import {ref, onMounted} from 'vue';
+import { defineAsyncComponent } from 'vue';
 
-let image = ref(null);
-
-onMounted(async () => {
-    try {
-        image.src = `/${$page.props.settings.logo_path}`;
-    } catch (e) {
-        console.log(e);
+const props = defineProps({
+    name: {
+        type: String,
+        required: true
     }
 })
+
+const icon = defineAsyncComponent(() =>
+    import(`../../../resources/svg/${props.name}.svg`)
+)
 </script>

@@ -71,11 +71,41 @@
                     <ul role="list" class="flex flex-1 flex-col gap-y-7">
                         <li>
                             <ul role="list" class="-mx-2 space-y-1">
-                                <li v-for="item in navigation" :key="item.name">
-                                    <Link :href="item.route ? route(item.route) : ''" :class="[item.current ? 'bg-indigo-700 text-white' : 'text-indigo-200 hover:text-white hover:bg-indigo-700', 'group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold']">
+                                <li
+                                    v-for="item in navigation"
+                                    v-on:click="item.showDropDown = !item.showDropDown"
+                                    :class="item.showDropDown ? 'text-indigo-200 hover:text-white hover:bg-indigo-700 rounded-sm' : ''"
+                                    :key="item.name">
+                                    <Link
+                                        v-if="!item?.children"
+                                        :href="item.route ? route(item.route) : ''"
+                                        :class="[item.current ? 'bg-indigo-700 text-white' : 'text-indigo-200 hover:text-white', 'hover:bg-indigo-700 group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold']">
                                         <component :is="item.icon" :class="[item.current ? 'text-white' : 'text-indigo-200 group-hover:text-white', 'h-6 w-6 shrink-0']" aria-hidden="true" />
                                         {{ item.name }}
+
+                                        <ChevronDownIcon v-if="item?.children" class="flex-shrink-0 ml-auto h-5 w-5 text-indigo-300 group-hover:text-white" aria-hidden="true" />
                                     </Link>
+
+                                    <a
+                                        v-if="item?.children"
+                                        href="#"
+                                        :class="[item.current ? 'bg-indigo-700 text-white' : 'text-indigo-200 hover:text-white', 'hover:bg-indigo-700 group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold']">
+                                        <component :is="item.icon" :class="[item.current ? 'text-white' : 'text-indigo-200 group-hover:text-white', 'h-6 w-6 shrink-0']" aria-hidden="true" />
+                                        {{ item.name }}
+
+                                        <ChevronDownIcon v-if="item?.children.length" class="flex-shrink-0 ml-auto h-5 w-5 text-indigo-300 group-hover:text-white" aria-hidden="true" />
+                                    </a>
+
+                                    <ul class="flex flex-grow flex-col" :class="item.showDropDown ? '' : 'hidden'">
+                                        <li class="group flex-grow flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold" v-for="child in item.children">
+                                            <Link
+                                                :href="child.route ? route(child.route) : ''"
+                                                :class="[child.current ? 'bg-indigo-700 text-white' : 'text-indigo-200 hover:text-white hover:bg-indigo-700', 'ml-5 hover:bg-indigo-600 flex-grow group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold']">
+                                                <component v-if="child?.icon" :is="child.icon" :class="[child.current ? 'text-white' : 'text-indigo-200 group-hover:text-white', 'h-6 w-6 shrink-0']" aria-hidden="true" />
+                                                {{ child.name }}
+                                            </Link>
+                                        </li>
+                                    </ul>
                                 </li>
                             </ul>
                         </li>
@@ -181,18 +211,33 @@ import {
     FolderIcon,
     HomeIcon, ShoppingBagIcon,
     UsersIcon,
+    ChevronUpIcon,
     XMarkIcon,
 } from '@heroicons/vue/24/outline'
 import {ChevronDownIcon, MagnifyingGlassIcon, PencilIcon, PencilSquareIcon} from '@heroicons/vue/20/solid'
 import ApplicationLogo from "../ApplicationLogo.vue";
 
-const navigation = [
-    { name: 'Dashboard', route: 'dashboard', icon: HomeIcon, current: true },
-    { name: 'Pages', route: 'dashboard', icon: DocumentPlusIcon, current: false },
-    { name: 'Posts', route: 'dashboard', icon: PencilSquareIcon, current: false },
-    { name: 'Shop', route: 'dashboard.shop.inventory', icon: ShoppingBagIcon, current: false },
-    { name: 'Users', route: 'dashboard', icon: UsersIcon, current: false },
-]
+const navigation = ref([
+    { name: 'Dashboard', route: 'dashboard', icon: HomeIcon, current: true, showDropDown: false },
+    { name: 'Pages', route: 'dashboard', icon: DocumentPlusIcon, current: false, showDropDown: false },
+    { name: 'Posts', route: 'dashboard', icon: PencilSquareIcon, current: false, showDropDown: false },
+    {
+        name: 'Shop', route: 'dashboard', icon: ShoppingBagIcon, current: false, showDropDown: false,
+        children: [
+            { name: 'Inventory', route: 'dashboard.shop.inventory', icon: null, current: false },
+            { name: 'Products', route: 'dashboard.shop.products', icon: null, current: false },
+            { name: 'Orders', route: 'dashboard.shop.orders', icon: null, current: false },
+            { name: 'Customers', route: 'dashboard.shop.customers', icon: null, current: false },
+            { name: 'Reports', route: 'dashboard.shop.reports', icon: null, current: false },
+        ]
+    },
+    {
+        name: 'Users', route: 'dashboard', icon: UsersIcon, current: false, children: [
+            { name: 'All Users', route: 'dashboard', icon: null, current: false },
+            { name: 'Roles', route: 'roles.show', icon: null, current: false },
+        ]
+    },
+])
 
 const teams = [
     // { id: 1, name: 'Heroicons', href: '#', initial: 'H', current: false },
