@@ -1,5 +1,6 @@
 <?php
 
+use App\Providers\CartServiceProvider;
 use Illuminate\Support\Facades\Facade;
 use Illuminate\Support\ServiceProvider;
 
@@ -172,6 +173,7 @@ return [
         App\Providers\FortifyServiceProvider::class,
         App\Providers\JetstreamServiceProvider::class,
         Spatie\Permission\PermissionServiceProvider::class,
+        CartServiceProvider::class
     ])->toArray(),
 
     /*

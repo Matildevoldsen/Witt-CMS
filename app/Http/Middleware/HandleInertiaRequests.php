@@ -35,6 +35,7 @@ class HandleInertiaRequests extends Middleware
     {
         return array_merge(parent::share($request), [
             'appName' => config()->get('app.name'),
+            'appURL' => config()->get('app.url'),
             'settings' => SiteSettings::first(),
             'topics' => TopicResource::collection(Topic::orderBy('name', 'asc')->get()),
             'ziggy' => function () use ($request) {
